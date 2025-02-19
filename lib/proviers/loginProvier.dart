@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testapp/services/authservices.dart';
 
 class Loginprovier extends ChangeNotifier {
@@ -15,11 +16,12 @@ String? get message => _message;
   Future login(String username, String pass) async {
     _isloading = true;
     notifyListeners();
-
+final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       final response = await authservices.login(username, pass);
       _message = response["message"];
       _token = response["token"];
+await prefs.setString('token', _token!);
       notifyListeners();
     } catch (e) {
       print(e);

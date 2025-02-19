@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testapp/proviers/loginProvier.dart';
+import 'package:testapp/screen/homescreen.dart';
 
 class Loginscreen extends StatelessWidget {
   Loginscreen({super.key, });
   var _formkey = GlobalKey<FormState>();
-  var namectr = TextEditingController();
-  var passctr = TextEditingController();
+  var namectr = TextEditingController(text: "rahul");
+  var passctr = TextEditingController(text: "123456789");
   @override
   Widget build(BuildContext context) {
   final loginProvier = Provider.of<Loginprovier>(context);
@@ -50,6 +51,9 @@ return "passor shoul be more than 6 igits";
                    await loginProvier.login(namectr.text, passctr.text);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(loginProvier.message!)));
                     print(loginProvier.token);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return Homescreen();
+                    },));
                   }
                 },
                 child: loginProvier.isloading  ? CircularProgressIndicator(strokeWidth: 2,color: Colors.orange,):Text("Login"))
