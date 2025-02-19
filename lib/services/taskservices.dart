@@ -6,11 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testapp/const.dart';
 
 class Taskservices {
+
+
+
+ gettoken()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+    return token;
+}
+
+
 //get task
   Future getTask() async {
     final url = Uri.parse(baseUrl + "/tasks");
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+var token =await gettoken();
     print(token);
 
     try {
