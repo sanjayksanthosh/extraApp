@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testapp/proviers/taskProvier.dart';
+import 'package:testapp/screen/tasklistscreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -30,7 +31,12 @@ class Homescreen extends StatelessWidget {
                   onPressed: () {
                     provier.getTask();
                   },
-                  child: Text("get"))
+                  child: Text("get")),
+                  ElevatedButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return ListPage();
+                    },));
+                  }, child: Text("go to listPage"))
             ],
           ),
           Expanded(

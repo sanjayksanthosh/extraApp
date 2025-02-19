@@ -38,8 +38,8 @@ var token =await gettoken();
 //post task
   Future postTask(String title, String description) async {
     final url = Uri.parse(baseUrl + "/tasks");
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+    var token =await gettoken();
+
 
     var jsonbody = jsonEncode({"title": title, "description": description});
 
@@ -61,8 +61,8 @@ var token =await gettoken();
 
  Future updateTask(String title, String description,String id) async {
     final url = Uri.parse(baseUrl + "/tasks/$id");
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+ var token =await gettoken();
+
 
     var jsonbody = jsonEncode({"title": title, "description": description});
 
@@ -86,9 +86,10 @@ var token =await gettoken();
 
  Future deleteTask(String id) async {
     final url = Uri.parse(baseUrl + "/tasks/$id");
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? token = prefs.getString("token");
 
+var token =await gettoken();
 
 
     try {
